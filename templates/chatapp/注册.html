@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>注册界面</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFEAEA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page {
+            width: 100%;
+            height: 800px;
+            background-color: #FFEAEA;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(templates/img/bg1.png);
+
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 500px;
+            height: 400px;
+        }
+
+        td {
+            border: 5px solid blanchedalmond;
+            text-align: left;
+            padding: 10px;
+            width: 250px;
+        }
+
+        input {
+            border-radius: 5px;
+            border: 1px solid yellow;
+            height: 60px;
+            width: 250px;
+        }
+
+        .submit {
+            width: 180px;
+            height: 60px;
+            background-color: aliceblue;
+            border-radius: 40px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #288bc4;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .text::-webkit-input-placeholder {
+            /* WebKit browsers */
+            font-size: 25px;
+        }
+
+        .text:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            font-size: 25px;
+        }
+
+        .text::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            font-size: 25px;
+        }
+
+        .text:-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <!--action和method值确保数据能被后端接收-->
+        <form action="{% url 'get_sign_up' %}" method="post">
+            <!--防止Django报错的代码-->
+            {% csrf_token %}
+            <div style="position: absolute; top: 8%; left: 37%;">
+                <h1>用户注册页面</h1>
+            </div>
+            <table style="position: absolute; top: 18%; left: 28%;">
+                <tr>
+                    <td style="font-size: 30px;">用户名</td>
+                    <td colspan="3">
+                        <input id="username" name="username" type="text" class="text" MaxLength="20" tabindex="1"
+                            placeholder="用户名" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 30px;">密码</td>
+                    <td>
+                        <input id="pwd" name="pwd" type="password" class="text" required="required"
+                            onpaste="return false;" MaxLength="20" tabindex="2" placeholder="密码" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 30px;">确认密码</td>
+                    <td>
+                        <input id="pwd2" name="pwd" type="password" class="text" required="required"
+                            onpaste="return false;" MaxLength="20" tabindex="2" placeholder="确认密码" />
+                    </td>
+                </tr>
+            </table>
+            <div style="position: absolute; top: 65%; left: 38%;">
+                <input class="submit" type="submit" id="log" value="注册" />
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#log").click(function () {
+                if ($("#username").val() == "" || $("#phone").val() == "" || $("#pwd").val() == "" || $(
+                        "#pwd2").val() == "") {
+                    alert("请把信息填写完整");
+                } else if ($("#pwd").val() == $("#pwd2").val()) {
+                    localStorage.setItem('username1', $("#username").val());
+                    localStorage.setItem('pwd1', $("#pwd").val());
+                    alert("用户注册成功\n请登入");
+                } else {
+                    alert(" 两次密码内容不一致！\n请重新输入");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

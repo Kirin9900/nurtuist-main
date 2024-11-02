@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>您的个性化食谱</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFEAEA;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 80%;
+            background-color: #FFF;
+            padding: 20px;
+            margin-top: 50px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 15px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        ul {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            list-style-type: none; /* 移除列表前的标记 */
+        }
+        ul li {
+            margin-bottom: 10px; /* 每个列表项之间的间距 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>您的个性化食谱</h1>
+        <ul>
+            {% for item in recipe.splitlines %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        <div style="text-align: center;">
+            <a href="{% url 'page1' %}">返回首页</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFEAEA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page {
+            width: 100%;
+            height: 800px;
+            background-color: #FFEAEA;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(templates/img/bg1.png);
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 500px;
+            height: 400px;
+        }
+
+        td {
+            border: 5px solid blanchedalmond;
+            text-align: left;
+            padding: 10px;
+            width: 250px;
+        }
+
+        input {
+            border-radius: 5px;
+            border: 1px solid yellow;
+            height: 60px;
+            width: 250px;
+        }
+
+        button {
+            width: 180px;
+            height: 60px;
+            background-color: aliceblue;
+            border-radius: 40px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #288bc4;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .text::-webkit-input-placeholder {
+            /* WebKit browsers */
+            font-size: 25px;
+        }
+
+        .text:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            font-size: 25px;
+        }
+
+        .text::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            font-size: 25px;
+        }
+
+        .text:-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+            font-size: 25px;
+        }
+
+        .hidden-link {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <!--action和method值确保数据能被后端接收-->
+        <form action="{% url 'get_log_in' %}" method="post">
+            <!--防止Django报错的代码-->
+            {% csrf_token %}
+            <div style="position: absolute; top: 8%; left: 40%;">
+                <h1>登录页面</h1>
+            </div>
+            <table style="position: absolute; top: 18%; left: 30%;">
+                <tr>
+                    <td style="font-size: 30px;">账号</td>
+                    <td colspan="3">
+                        <input id="username" name="username" type="text" class="text" MaxLength="20" tabindex="1" placeholder="用户名" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 30px;">密码</td>
+                    <td>
+                        <input id="pwd" name="pwd" type="password" class="text" required="required" onpaste="return false;" MaxLength="20" tabindex="2" placeholder="密码" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t" style="font-size: 30px;">验证码</td>
+                    <td style="z-index: 1 " colspan="3 ">
+                        <input class="text" type="text" id="verifycode" placeholder="验证码" />
+                        <span>验证码为</span><span id="show-code"></span>
+                    </td>
+                </tr>
+            </table>
+            <!--接收后端反馈的信息，用于表示用户名或密码错误-->
+            {% if error_message %}
+                <p class="error">{{ error_message }}</p>
+            {% endif %}
+            <div style="position: absolute; top: 65%; left: 38%;">
+                <button type="submit" id="log">登录</button>
+            </div>
+            <div style="position: absolute; top: 60%; left: 73%;">
+                <p>没有账号？</p>
+            </div>
+            <div id="zc" style="position: absolute; top: 65%; left: 70%;">
+                <button id="sb"><a href="{% url 'sign_up' %}">立即注册</a></button>
+            </div>
+        </form>
+    </div>
+    <!--使用jQuery生成4位随机验证码-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            /* 随机生成 4 位验证码 */
+            var verifyCode = "";
+            var codeLength = 4;
+            var codeChars = new Array(
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+            for (var i = 0; i < codeLength; i++) {
+                var index = Math.floor(Math.random() * codeChars.length);
+                verifyCode += codeChars[index];
+            }
+            $("#show-code").text(verifyCode);
+
+            /* 点击按钮后 */
+            $("#log").click(function () {
+                var username = $("#username").val();
+                var pwd = $("#pwd").val();
+                var inputVerifyCode = $("#verifycode").val();
+                /* 判断验证码是否正确 */
+                if (inputVerifyCode != verifyCode) {
+                    alert("验证码错误");
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>先验——AI营养师</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #FFEAEA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .page{
+            width: 100%;
+            height: 800px;
+            background-color: #FFEAEA;
+            border: none;
+            background-image: url('{% static "chatapp/img/封面.png" %}');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        #sign{
+            position: relative;
+            top: 65%;
+            display: flex;
+            margin:0 30% 0 20%;
+            float: left;
+        }
+        #sb{
+            width: 200px;
+            height: 100px;
+            background-color: aliceblue;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+            color: #000000;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);;
+        }
+        #header{
+            width: 80%;
+            height: 100px;
+            position: relative;
+            top: 10%;
+            margin: 0 10% 0 35%;
+        }
+        tr td{
+            font-size: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+            float: left;
+        }
+        #sb a{
+            color: #000000;
+        }
+        #search{
+            width: 200px;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid #000000;
+            background-color: #FFEAEA;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+        }
+        #sp{
+            background-image: url('{% static "chatapp/img/search.png" %}');
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            border: none;
+            cursor: pointer;
+        }
+        #search-button-container {
+           display: flex;
+           align-items: center;
+        }
+        #search, #sp {
+           margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <div class="page">
+        <div id="header">
+            <table>
+                <tr>
+                    <td><a href="{% url 'lunbo' %}">私人定制</a></td>
+                    <td><a href="{% url 'store' %}">商城</a></td>
+                    <td><a href="{% url 'index' %}">社区</a></td>
+                    <td><a href="{% url 'distribution' %}">配送</a></td>
+                    <td><a href="{% url 'personal_page' %}">我的</a></td>
+                    <td>
+                        <div id="search-button-container">
+                            <label for="search"></label><input type="text" placeholder="Search" id="search">
+                            <button id="sp"></button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="sign">
+            <button id="sb"><a href="{% url 'index' %}">log in</a></button>
+        </div>
+    </div>
+</body>
+</html>

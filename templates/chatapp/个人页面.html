@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的档案</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #FFEAEA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page{
+            width: 80%;
+            height: 1200px;
+            background-color: #FFEAEA;
+            border: gray solid 1px;
+        }
+
+        #user{
+            position: relative;
+            top: 5%;
+            display: flex;
+            margin:0 10% 0 10%;
+            float: left;
+        }
+
+        .circle{
+            background-size: cover;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        #photo{
+            position: relative;
+            top: 5%;
+            left: 25%;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div id="user">
+            <div>
+                <h1>您好，亲爱的小K先生</h1>
+                <h2>请接受今日份健康报告~</h2>
+            </div>
+            <div id="photo">
+                <img src="{% static 'chatapp/img/头像.jpg'%}"  class="circle" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

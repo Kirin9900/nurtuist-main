@@ -1,0 +1,316 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配送</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FFEAEA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            background-color: #FFEAEA;
+            border: none;
+            /* background-image: url(./img/封面.png); */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        /* #sign{
+            position: relative;
+            top: 65%;
+            display: flex;
+            margin:0 30% 0 20%;
+            float: left;
+        } */
+
+        #header {
+            width: 80%;
+            height: 100px;
+            position: relative;
+            top: 10%;
+            margin: 0 10% 0 35%;
+        }
+
+        tr td {
+            font-size: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+            float: left;
+        }
+
+        #sb a {
+            color: #000000;
+        }
+
+        #search {
+            width: 200px;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid #000000;
+            background-color: #FFEAEA;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        #sp {
+            background-image: url("templates/img/search.png");
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        #search-button-container {
+            display: flex;
+            align-items: center;
+        }
+
+        #search,
+        #sp {
+            margin-right: 10px;
+        }
+
+        /* 版权 */
+        .copyright {
+            position: absolute;
+            text-align: center;
+            top: 800px;
+            left: 500px;
+        }
+
+        .copyright p {
+            margin-bottom: 10px;
+            color: #A1A1A1;
+        }
+
+        .copyright p a {
+            margin: 0 10px;
+            color: #A1A1A1;
+        }
+
+
+        /* 商品 */
+        .fresh .title {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            margin-left: 47%;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+        }
+
+        .content .right {
+            width: 969px;
+            height: 610px;
+            /* background-color: pink; */
+        }
+
+        .content .right ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .content .right li {
+            position: relative;
+            padding: 10px 21px 0;
+            width: 323px;
+            height: 305px;
+            border: 2px solid #fff;
+            /* 为了隐藏绿色cover */
+            overflow: hidden;
+        }
+
+        /* 产品内容 */
+        .content .pic {
+            width: 277px;
+            height: 180px;
+        }
+
+        .content .info {
+            margin-top: 14px;
+            margin-bottom: 5px;
+            height: 60px;
+            line-height: 19px;
+        }
+
+        .content .price {
+            color: #AF2F22;
+        }
+
+        .content .price span {
+            margin-left: 5px;
+            font-size: 22px;
+        }
+
+        /* 产品底部绿色区域 */
+
+        .content .cover p:nth-child(1) {
+            font-size: 18px;
+        }
+
+        .content .cover p:nth-child(2) {
+            margin: 3px auto 6px;
+            width: 120px;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.11);
+        }
+
+        .content .cover p:nth-child(3) {
+            font-size: 13px;
+        }
+
+        /* 鼠标悬停到li，显示cover，改变位置 */
+
+        .content .right li:hover {
+            border: 2px solid #00BE9A;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div id="header">
+            <table>
+                <tr>
+                    <td><a href="{% url 'lunbo' %}">私人定制</a></td>
+                    <td><a href="{% url 'store' %}">商城</a></td>
+                    <td><a href="{% url 'distribution' %}">配送</a></td>
+                    <td><a href="{% url 'personal_page' %}">我的</a></td>
+                    <td>
+                        <div id="search-button-container">
+                            <label for="search"></label><input type="text" placeholder="Search" id="search">
+                            <button id="sp"><img src="{% static 'chatapp/img/search.png'%}" alt=""></button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="fresh">
+            <!-- 标题 -->
+            <div class="title">
+                <div class="left">
+                    <h3 style="color: red;">配送方案选择</h3>
+                </div>
+            </div>
+            <!-- 内容 -->
+            <div class="content">
+                <div class="right">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="pic"><img src="{% static 'chatapp/uploads/1.png'%}" alt=""></div>
+                                <div class="txt">
+                                    <div class="info">
+                                        <h1>套餐一</h1>
+                                    </div>
+                                    <p class="price">¥<span>29.00</span></p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="pic"><img src="{% static 'chatapp/uploads/2.png'%}" alt=""></div>
+                                <div class="txt">
+                                    <div class="info">
+                                        <h1>套餐二</h1>
+                                    </div>
+                                    <p class="price">¥<span>29.00</span></p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="pic"><img src="{% static 'chatapp/uploads/3.png'%}" alt=""></div>
+                                <div class="txt">
+                                    <div class="info">
+                                        <h1>套餐三</h1>
+                                    </div>
+                                    <p class="price">¥<span>29.00</span></p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="pic"><img src="{% static 'chatapp/uploads/4.png'%}" alt=""></div>
+                                <div class="txt">
+                                    <div class="info">
+                                        <h1>套餐四</h1>
+                                    </div>
+                                    <p class="price">¥<span>29.00</span></p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="pic"><img src="{% static 'chatapp/uploads/5.png'%}" alt=""></div>
+                                <div class="txt">
+                                    <div class="info">
+                                        <h1>套餐五</h1>
+                                    </div>
+                                    <p class="price">¥<span>29.00</span></p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="pic"><img src="{% static 'chatapp/uploads/6.png'%}" alt=""></div>
+                                <div class="txt">
+                                    <div class="info">
+                                        <h1>套餐六</h1>
+                                    </div>
+                                    <p class="price">¥<span>29.00</span></p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 版权 -->
+        <div class="copyright">
+            <p>
+                <a href="#">关于我们</a>|
+                <a href="#">帮助中心</a>|
+                <a href="#">售后服务</a>|
+                <a href="#">配送与验收</a>|
+                <a href="#">商务合作</a>|
+                <a href="#">搜索推荐</a>|
+                <a href="#">友情链接</a>
+            </p>
+            <p>CopyRight ©AI营养师 </p>
+        </div>
+
+    </div>
+</body>
+
+</html>
