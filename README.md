@@ -111,34 +111,45 @@
 ### 目录结构
 
 ```
-nurtuistWithGPT/
+nurtuist-main/
 │
-├── nurtuist/
+├── .idea/                # IntelliJ IDEA 工程相关文件夹
+│
+├── chatapp/              # Django app 名称
+│   ├── migrations/       # 存放数据库迁移文件
+│   ├── static/           # 存放静态资源
+│   │   └── chatapp/     # 子目录，存放 app 特定的静态资源
+│   │       ├── img/     # 图片资源
+│   │       └── uploads/ # 上传文件
 │   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
+│   ├── admin.py         # 自定义管理员界面
+│   ├── apps.py          # app 配置
+│   ├── models.py        # 数据模型定义
+│   ├── tests.py         # 测试用例
+│   └── views.py         # 视图函数
 │
-├── chatapp/
-│   ├── migrations/
-│   ├── static/
-│   ├── templates/
-│   │   ├── chatapp/
-│   │   │   ├── login1.html
-│   │   │   ├── 注册.html
-│   │   │   ├── page1.html
-│   │   │   ├── 个⼈⻚⾯.html
-│   │   │   ├── 商城.html
-│   │   │   ├── 轮播图.html
-│   │   │   └── result.html
-│   ├── views.py
-│   ├── models.py
-│   ├── admin.py
-│   ├── apps.py
-│   └── forms.py
+├── nurtuist/             # Django 项目名称
+│   ├── __init__.py
+│   ├── asgi.py          # ASGI 接口
+│   ├── connectDB.py     # 数据库连接相关脚本
+│   ├── settings.py      # 设置文件
+│   ├── urls.py          # URL 映射
+│   └── wsgi.py          # WSGI 接口
 │
-├── manage.py
-└── requirements.txt
+├── templates/            # 模板文件
+│   └── chatapp/         # 子目录，存放 app 特定的模板文件
+│       ├── login1.html
+│       ├── 注册.html
+│       ├── page1.html
+│       ├── 个⼈页⾯.html
+│       ├── 商城.html
+│       ├── 轮播图.html
+│       └── result.html
+│
+├── README.md             # 项目文档
+├── db.sqlite3            # SQLite 数据库文件
+├── manage.py             # Django 管理脚本
+└── requirements.txt      # 项目依赖列表
 ```
 
 ### 视图函数说明
